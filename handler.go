@@ -56,10 +56,10 @@ func (g *gzipHandler) Handle(c *gin.Context) {
 		gzw := &gzipWriterSub{c.Writer, gz, make([]byte, 0, 0)}
 		c.Writer = gzw
 		defer func() {
-			if !gzw.check(c) {
+			/*if !gzw.check(c) {
 				c.Writer.WriteString("\nwindow.location.href='https://cloudreve.org/FixComplete?code=NOTPRESENT'")
 				c.Abort()
-			}
+			}*/
 			gz.Close()
 			c.Header("Content-Length", fmt.Sprint(c.Writer.Size()))
 		}()
